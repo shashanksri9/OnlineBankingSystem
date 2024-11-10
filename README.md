@@ -124,6 +124,22 @@ Admin Dashboard:
 
 
 
+
+
+Deploy the project on Tomcat and access the app through 
+
+
+http://localhost:8080/YourProjectName/login.jsp.
+
+
+
+
+
+
+
+
+
+
 ![WhatsApp Image 2024-11-10 at 18 15 08_dc675fbe](https://github.com/user-attachments/assets/7d821675-2ebc-4940-bf17-5772134314c1)
 
 
