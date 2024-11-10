@@ -118,8 +118,20 @@ Admin Dashboard:
  
 3. Service Access: Section for accessing and managing banking services (loans, investments).
 
+4. 4. Profile Management: Form for updating personal details, security settings, and contact information.
+  
 
 
-4. Profile Management: Form for updating personal details, security settings, and contact information.
 
+
+![WhatsApp Image 2024-11-10 at 18 15 08_dc675fbe](https://github.com/user-attachments/assets/7d821675-2ebc-4940-bf17-5772134314c1)
+
+
+
+![WhatsApp Image 2024-11-10 at 18 15 09_75e31d4b](https://github.com/user-attachments/assets/c1fc52e8-5628-46a2-895d-7d3c8acfd047)
+
+
+
+
+![Database Schema](https://github.com/user-attachments/assets/75ed0f1c-e4e1-43a0-a56b-134dab6965b3)
 
