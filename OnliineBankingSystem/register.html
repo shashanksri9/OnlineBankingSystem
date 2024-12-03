@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - National Bank</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="bank-header">
+    <h1>National Bank</h1>
+  </header>
+  <div class="card">
+    <h3>Register</h3>
+    <form id="registerForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" required>
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="" disabled selected>Select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
