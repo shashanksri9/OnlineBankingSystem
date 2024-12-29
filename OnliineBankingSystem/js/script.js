@@ -1,4 +1,10 @@
-// Calculate Age
+// Utility Functions
+
+/**
+ * Calculate the user's age based on their date of birth.
+ * @param {string} dob - Date of birth in YYYY-MM-DD format.
+ * @returns {number} - Age of the user.
+ */
 function calculateAge(dob) {
   const birthDate = new Date(dob);
   const today = new Date();
@@ -10,13 +16,36 @@ function calculateAge(dob) {
   return age;
 }
 
-// Validate Password
+/**
+ * Validate a password based on criteria:
+ * - At least 8 characters long
+ * - Contains uppercase, lowercase, number, and special character
+ * @param {string} password - Password string to validate.
+ * @returns {boolean} - True if the password is valid, false otherwise.
+ */
 function validatePassword(password) {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return passwordRegex.test(password);
 }
 
-// Register
+/**
+ * Add a transaction to the user's profile.
+ * @param {number} amount - Transaction amount.
+ * @param {string} type - Type of transaction ('credit' or 'debit').
+ */
+function addTransaction(amount, type) {
+  const loggedInUserEmail = localStorage.getItem('loggedInUser');
+  if (!loggedInUserEmail) return;
+
+  const user = JSON.parse(localStorage.getItem(loggedInUserEmail));
+  user.transactions = user.transactions || [];
+  user.transactions.push({ amount, type, date: new Date().toLocaleString() });
+  localStorage.setItem(loggedInUserEmail, JSON.stringify(user));
+}
+
+// Event Listeners for Forms
+
+// Registration
 document.getElementById('registerForm')?.addEventListener('submit', function (event) {
   event.preventDefault();
   const name = document.getElementById('name').value;
@@ -41,9 +70,14 @@ document.getElementById('registerForm')?.addEventListener('submit', function (ev
     return;
   }
 
-  const user = { name, email, dob, gender, password };
+  if (localStorage.getItem(email)) {
+    alert('Email is already registered. Please log in.');
+    return;
+  }
+
+  const user = { name, email, dob, gender, password, transactions: [] };
   localStorage.setItem(email, JSON.stringify(user));
-  alert('Registration Successful! You can now login.');
+  alert('Registration Successful!');
   window.location.href = 'login.html';
 });
 
@@ -55,7 +89,6 @@ document.getElementById('loginForm')?.addEventListener('submit', function (event
 
   const user = JSON.parse(localStorage.getItem(email));
   if (user && user.password === password) {
-    alert('Login Successful!');
     localStorage.setItem('loggedInUser', email);
     window.location.href = 'profile.html';
   } else {
@@ -63,7 +96,7 @@ document.getElementById('loginForm')?.addEventListener('submit', function (event
   }
 });
 
-// Profile
+// Profile Page
 if (window.location.pathname.includes('profile.html')) {
   const loggedInUserEmail = localStorage.getItem('loggedInUser');
   if (!loggedInUserEmail) {
@@ -73,6 +106,17 @@ if (window.location.pathname.includes('profile.html')) {
     const user = JSON.parse(localStorage.getItem(loggedInUserEmail));
     document.getElementById('userName').innerText = user.name;
     document.getElementById('userEmail').innerText = user.email;
+
+    const transactionList = document.getElementById('transactionList');
+    if (user.transactions?.length > 0) {
+      user.transactions.forEach((txn) => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${txn.date}: ₹${txn.amount} (${txn.type})`;
+        transactionList.appendChild(listItem);
+      });
+    } else {
+      transactionList.innerHTML = '<li>No transactions yet.</li>';
+    }
   }
 }
 
